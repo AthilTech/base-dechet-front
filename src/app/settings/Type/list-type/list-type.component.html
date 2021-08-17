@@ -1,0 +1,255 @@
+<div class="header bg-gradient-lignt pb-1 pt-2 pt-md-2">
+</div>
+<div class="mx-auto">
+  <div class="row mb-2">
+    <div class="col-sm-6">
+      <h5></h5>
+    </div>
+    <div class="col-sm-6 ">
+      <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+        <li class="breadcrumb-item active">Gestion Type de Déchet</li>
+      </ol>
+    </div>
+  </div>
+  <div class="card ">
+    <div class="card-header shadow-sm mb-2">
+      <h3 class="card-title text-lead">Liste des Types de Déchet</h3>
+      <div class="card-tools">
+        <button class="btn  btn-outline-primary btn-sm" (click)="AddType()">
+          <i class="fas fa-plus-circle"></i> Ajouter</button>
+      </div>
+    </div>
+    <div class="card collapsed-card" *ngFor="let itemtype of typeService.listSousTypeGroupedByType  ">
+      <div class="card-header ">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- <div class="user-block"> -->
+            <table class="table table-hover ">
+              <thead class="text-xs  bg-light shadow-sm">
+                <tr>
+                
+                  <th> Nature</th>
+                  <th>Type</th>
+                  <!-- <th> Objectif</th>
+                  <th> Conditionnement de dechet</th> -->
+                  <th >Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr class="align-middle table-border text-center">
+                  
+                  <td>{{itemtype.natureLabel}}</td>
+                  <td>{{itemtype.typeLabel}}</td>
+                  <!-- <td>{{itemtype.goalValue}}</td>
+                  <td *ngIf="itemtype.conditioningLabel !=null">{{itemtype.conditioningLabel}}, {{itemtype.value}}</td>
+                  <td *ngIf="itemtype.conditioningLabel ==null">-</td> -->
+                  <td>
+                    <div class="btn-group ">
+                      <div class="btn-group ">
+                        <button class="btn btn-sm btn-default" (click)="onUpdateType(itemtype)">
+                          <i class="fas fa-pen text-primary"></i></button>
+                        <button class="btn btn-sm btn-default" (click)="onDeleteTypeWithSousType(itemtype)">
+                          <i class="fa fa-trash text-danger"></i></button>
+
+                        <button class="btn btn-sm btn-default" (click)="AddType() " (click)="addSubType()"
+                          (click)="SetFk_Type(itemtype.typeId)">
+                          <i class="fas fa-plus-circle text-primary"></i></button>
+
+                        <div class="card-tools btn-group">
+                          <span data-toggle="tooltip" class="badge badge-primary">{{itemtype?.length}}</span>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-default" data-card-widget="collapse">
+                              <i class="fas fa-minus text-primary"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- 
+           <div class="">
+       
+           
+          <span class="username mt-n1 ml-0">
+            <a >Type:{{itemtype.typeLabel}}</a>
+         
+          </span>
+          <span class="description">
+            <a >{{itemtype.typeLabel}}</a>
+          </span>
+        </div> -->
+          </div>
+
+          <!-- <div class="col-md-2"> -->
+
+          <!-- <div class="btn-group ">
+              <button class="btn btn-sm btn-default" (click)="onUpdateType(itemtype)" >
+                <i class="fas fa-pen text-primary" ></i></button>
+              <button class="btn btn-sm btn-default" (click)="onDeleteTypeWithSousType(itemtype.typeId)">
+                <i class="fa fa-trash text-danger"></i></button>
+              
+              <button class="btn btn-sm btn-default" (click)="AddType() " (click)="SetFk_Type(itemtype.typeId)">
+              <i class="fas fa-plus-circle text-primary"></i></button>
+            </div> -->
+
+          <!-- </div> -->
+          <!-- <div class="col-md-1"> -->
+          <!-- 
+        <div class="card-tools">
+          <span data-toggle="tooltip"  class="badge badge-primary">{{itemtype?.length}}</span>
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i> 
+          </button>
+         
+        </div> -->
+          <!-- </div> -->
+        </div>
+
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <!-- <table class="table table-hover table-active"> -->
+        <ng-container *ngIf="itemtype.listSousType.length == 0">
+
+          <div class="box-header with-border text-center">
+            <i class="fa fa-warning text-center  "></i>
+            <br>
+            <span class="box-title">Pas de Sous Type</span>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="itemtype.listSousType.length > 0">
+          <table class="table table-hover ">
+            <thead class="text-xs  bg-light shadow-sm">
+              <tr class="align-middle table-border text-center">
+                <th> Sous Type</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="align-middle table-border text-center">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let itemsSousTypes of itemtype.listSousType">
+
+                <td class="align-middle table-border text-center">{{itemsSousTypes.typeLabel}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="align-middle table-border text-center">
+                  <div class="btn-group mr-0 position-right">
+                    <button class="btn btn-sm btn-default" (click)="onUpdateType(itemsSousTypes)"
+                      (click)="setSubTypeForUpdate()" (click)="SetFk_Type(itemtype.typeId)">
+                      <i class="fas fa-pen text-dark"></i></button>
+                    <button class="btn btn-sm btn-default" (click)="onDeleteType(itemsSousTypes.typeId)">
+                      <i class="fa fa-trash text-dark"></i></button>
+
+
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+
+          <!-- <ng-container *ngFor="let itemsSousTypes of itemtype.listSousType">
+
+
+                <div class="box-header with-border   text-center">
+       
+           
+                    <span class="username mt-n1 ml-2  text-center text-muted" >
+                      <a >{{itemsSousTypes.typeLabel}}</a>
+                   
+                    </span>
+                    <span class="">
+                        <div class="btn-group mr-0 ml-2">
+                            <button class="btn btn-sm btn-default" (click)="onUpdateType(itemsSousTypes)" (click)="SetFk_Type(itemtype.typeId)">
+                              <i class="fas fa-pen text-dark" ></i></button>
+                            <button class="btn btn-sm btn-default" (click)="onDeleteType(itemsSousTypes.typeId)">
+                              <i class="fa fa-trash text-dark"></i></button>
+                            
+                              
+                          </div>
+    
+                        </span>
+                  
+                 
+                  </div>
+               
+            </ng-container> -->
+
+
+          <!-- <table class="table table-hover ">
+          <thead class="p-0 text-muted ">
+            <tr>
+              
+              <th > Sous Type</th>
+              <th> Objectif</th>
+              <th> Nature</th>
+              <th> Conditionnement de dechet</th>
+              <th > Mode de gestion</th>
+              <th >Action</th>
+            </tr>
+          </thead>
+ 
+        <tbody>
+            <tr *ngFor="let itemsSousTypes of itemtype.listSousType" >
+
+
+
+              <td>{{itemsSousTypes.typeLabel}}</td>
+              <td>{{itemsSousTypes.goalValue}}</td>
+              <td>{{itemsSousTypes.natureLabel}}</td>
+              <td>{{itemsSousTypes.conditioningLabel}}</td>
+              <td>{{itemsSousTypes.managementModeLabel}}</td>
+              <td>     <div class="btn-group mr-0 position-right">
+                <button class="btn btn-sm btn-default" (click)="onUpdateType(itemsSousTypes)" (click)="SetFk_Type(itemtype.typeId)">
+                  <i class="fas fa-pen text-dark" ></i></button>
+                <button class="btn btn-sm btn-default" (click)="onDeleteType(itemsSousTypes.typeId)">
+                  <i class="fa fa-trash text-dark"></i></button>
+                
+                  
+              </div>  </td>
+                 
+            </tr>
+          </tbody>   
+
+        </table> -->
+
+        </ng-container>
+      </div>
+
+    </div>
+    <!-- 
+    <pagination-controls class="text-center" (pageChange)="p = $event" id="first"
+    previousLabel="Préc" nextLabel="Suiv"></pagination-controls> -->
+
+  </div>
+</div>

@@ -1,0 +1,168 @@
+<div class="card-header pb-0">
+    <span class="card-title ">Affecter Type déchet à Filiale</span>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="card-body">
+    <form [formGroup]="typeSubsidiaryService.addOrEditType_SubsidiaryForm" autocomplete="off" (ngSubmit)="onSubmit()">
+        
+
+
+
+      
+
+      <div class="form-group" *ngIf="typeSubsidiaryService.forUpdate">
+        <label>Filiale</label>
+        <ng-select [items]="subsidiaryService.ListActiveSubsidiaries" bindLabel="label" bindValue="subsidiaryId"
+          [multiple]="false" formControlName="fK_Subsidiary">
+        </ng-select>
+      </div>
+
+    
+    <div class="form-group" *ngIf=" ! typeSubsidiaryService.forUpdate">
+        <label>Filiale</label>
+        <ng-select [items]="subsidiaryService.ListActiveSubsidiaries" bindLabel="label" bindValue="subsidiaryId"
+            [multiple]="true" formControlName="fK_Subsidiary">
+        </ng-select>
+    </div>
+
+   
+
+    <div class="form-group">
+        <label>Nature</label>
+        <ng-select [items]="lisNatures" [multiple]="false" bindLabel="natureLabel" bindValue="natureId"
+            (change)="getListTypes($event)" formControlName="fK_Nature" [multiple]="false" >
+        </ng-select>
+    </div>
+
+      <div class="form-group">
+            <label>Types</label>
+            <ng-select [items]="typeSubsidiaryService.lisTypes" [multiple]="false" bindLabel="typeLabel" bindValue="typeId" (change)="GetListSubTypesByFK_Type($event)"
+                formControlName="fK_Type">
+            </ng-select>
+        </div>
+
+          <div class="btn-group d-flex " >
+        
+            <button type="button" [hidden]="typeSubsidiaryService.hiddenButtunGroup || typeSubsidiaryService.hiddenConditioningButtunGroup || TypeSubsidiaryFormArray.length >0 " (click)="AddConditioning()"class="btn btn-default text-white bg-info" > <i class="fas fa-plus-circle"></i>Ajouter Conditionnement</button>
+            <button type="button"  [hidden]="typeSubsidiaryService.hiddenButtunGroup " (click)="SelectSubTypes()"class="btn btn-default bg-warning text-white " ><i class="fas fa-check-circle"></i>Sélectionner Sous Type</button>
+         </div>
+         <div class="form-group" [hidden]=" ! typeSubsidiaryService.hiddenButtunGroup ">
+            <label>Conditionnement de dechet</label><small class="p-3" *ngIf="typeSubsidiaryService.forUpdate == true && typeSubsidiaryService.selecteditem?.conditioningLabel != null">
+              {{typeSubsidiaryService.selecteditem.conditioningLabel}}, {{typeSubsidiaryService.selecteditem.conditioningTypeLabel}} </small>
+            <ng-select [items]="ListConditionnement" bindLabel="typeService.ListConditionnement"
+              bindValue="typeService.ListConditionnement"   [multiple]="false" (change)="selectedConditioning($event)">
+            </ng-select>
+          </div>
+    
+          <div class="form-group" *ngIf="selectedConditioningLabel != ''" [hidden]="!typeSubsidiaryService.hiddenButtunGroup ">
+            <label>Type {{selectedConditioningLabel}}</label>
+            <ng-select [items]="typeService.ListAssociatedConditioningTypes" bindLabel="value" bindValue="conditioningId"
+              [multiple]="false" formControlName="fK_Conditioning" [multiple]="false"
+              (change)="selectedConditioning($event)">
+            </ng-select>
+          </div>
+
+
+          <form [formGroup]="typeSubsidiaryService.addOrEditSubType_SubsidiaryForm" autocomplete="off" (ngSubmit)="onSubmit()">
+        
+
+
+          <ng-container formArrayName="Type_Subsidiary"         *ngFor="let mmFormGroup of TypeSubsidiaryFormArray?.controls ;let i=index;">
+            <ng-container [formGroupName]="i">
+          <div class="row">
+            <div class="col-md-11">
+              <div class="card" >
+
+                <div class="form-row border rounded p-2">
+                    <div class="col-md-6">
+                        <label class="text-dark">Sous Type</label>
+                        <ng-select [items]="typeSubsidiaryService.ListSubTypesByTypeId"  bindLabel="typeLabel"
+                        bindValue="typeId"  [multiple]="false"   formControlName="fK_Type">
+                      </ng-select>
+                     
+                    </div><div class="col-md-6 ng-star-inserted">
+
+                      
+                      <div class="form-group" >
+                        <label>Conditionnement</label>
+                        <ng-select [items]="ListConditionnement"  formControlName="conditioningLabel" bindLabel="typeService.ListConditionnement"
+                          bindValue="typeService.ListConditionnement" [multiple]="false" (change)="selectedConditioning($event)">
+                        </ng-select>
+                      </div>
+                
+                     
+
+              
+            
+            </div>
+   
+
+          </div>
+          <div class="form-group " *ngIf="selectedConditioningLabel != ''" >
+            <label class="text-center">Type Conditionnement</label>
+            <ng-select [items]="typeService.ListAssociatedConditioningTypes" bindLabel="value" bindValue="conditioningId"
+              [multiple]="false" formControlName="fK_Conditioning" [multiple]="false"
+              (change)="selectedConditioning($event)">
+            </ng-select>
+          </div>
+
+              </div>
+            </div>
+          
+
+            <div class="col-md-1 ">
+              <div class="btn-group-vertical bg-white rounded-right  border-right border-top border-bottom">
+                <button type="button" class="btn btn-light rounded-right" (click)="onDelete(i,mmFormGroup.get('type_SubsidiaryId').value )"><i
+                    class="fas fa-trash text-danger"></i></button>
+                <!-- <button type="button" class="btn btn-light rounded-right"><i class="fas fa-info text-info"></i></button>
+               -->
+                <!-- <button type="button" class="btn btn-light rounded-right"><i class="fas fa-align-left"></i></button> -->
+              </div>
+            </div>
+          </div>
+
+      
+
+        </ng-container>
+      </ng-container>
+      </form>
+      <!-- {{typeSubsidiaryService.addOrEditSubType_SubsidiaryForm.value | json }} -->
+
+
+
+
+
+
+          <div class="custom-control custom-switch mt-4" [hidden]="typeSubsidiaryService.addOrEditType_SubsidiaryForm.controls.goal['controls'].goalValue.value!=0">
+            <input   type="checkbox" class="custom-control-input" id="miseEnDecharge"
+              [checked]=" typeSubsidiaryService.addOrEditType_SubsidiaryForm.controls.miseEnDecharge.value==true"
+              formControlName="miseEnDecharge" addOrEditType_SubsidiaryForm>
+            <label class="custom-control-label d-inline w-100" for="miseEnDecharge">Posséde-t-il un Objectif ? (<small>Cas
+                Mise en décharge</small>)
+            </label>
+          </div>
+
+          <div class="" formGroupName="goal" >
+            <div class="form-group mt-2"
+              *ngIf=" typeSubsidiaryService.addOrEditType_SubsidiaryForm.controls.miseEnDecharge.value">
+              <label>Objectif</label>
+              <input type="number" class="form-control" formControlName="goalValue" placeholder="Value ">
+            </div>
+      
+           
+          </div>
+
+
+      
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Annulé</button>
+            <button type="submit" [disabled]=" typeSubsidiaryService.addOrEditType_SubsidiaryForm.invalid"
+                class="btn btn-primary">Enregistrer</button>
+
+        </div>
+   
+    </form>
+</div>

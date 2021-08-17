@@ -1,0 +1,79 @@
+<div class="header bg-gradient-lignt pb-1 pt-2 pt-md-2">
+</div>
+<div class="row mb-2">
+  <div class="col-sm-6">
+    <h5></h5>
+  </div>
+  <div class="col-sm-6 ">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+      <li class="breadcrumb-item active">Type Frais</li>
+    </ol>
+  </div>
+</div>
+
+<div class="mx-auto" style="margin-top: 20px;">
+  <div class="card ">
+    <div class="card-header">
+      <h4 class="card-title ">Liste des Types Frais</h4>
+      <div class="card-tools">
+        <button class="btn  btn-outline-primary btn-sm" (click)="onAddCoastsTypeModal()" data-toggle="modal"
+          data-target="#AddEditCoastsTypeModal">
+          <i class="fas fa-plus-circle"></i> Ajouter</button>
+      </div>
+    </div>
+
+    <div class="">
+      <table class="table">
+        <thead class="text-xs  bg-light shadow-sm">
+          <tr style="text-align: center;">
+            <th>Type Frais</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of coastsTypeService.ListCoastsTypes ">
+            <td style="text-align: center;">{{item.coastsTypeLabel}}</td>
+            <td style="text-align: center;">
+              <div class="btn-group">
+
+                <button class="btn btn-sm btn-default" (click)="onUpdateCoastsType(item)" data-toggle="modal"
+                  data-target="#AddEditCoastsTypeModal">
+                  <i class="fas fa-pen text-primary"></i></button>
+
+                <button class="btn btn-sm btn-default" (click)="onDeleteCoastsType(item)">
+                  <i class="fa fa-trash text-danger"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <pagination-controls class="text-center" id="first" previousLabel="Préc" nextLabel="Suiv"></pagination-controls> -->
+
+    </div>
+
+    <!--  Add or edit Ponderation modal  -->
+    <div class="modal hide fade" id="AddEditCoastsTypeModal" tabindex="-1" role="dialog"
+      aria-labelledby="AddEditCoastsTypeModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="AddEditCoastsTypeModalTitle" class="text-dark"
+      *ngIf="coastsTypeService.CoastsTypeForm.controls.coastsTypeId.value=='00000000-0000-0000-0000-000000000000'">
+      <i class="fas fa-plus-circle" ></i> Ajouter Type Frais</h5>
+      <h5 class="modal-title" id="AddEditCoastsTypeModalTitle" class="text-dark"
+      *ngIf="coastsTypeService.CoastsTypeForm.controls.coastsTypeId.value!='00000000-0000-0000-0000-000000000000'">
+      <i class="fas fa-pen text-primary"></i> Modifier Type Frais</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+          </div>
+          <div class="modal-body p-1">
+            <app-add-or-edit-coasts-type></app-add-or-edit-coasts-type>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

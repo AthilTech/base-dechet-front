@@ -1,0 +1,33 @@
+<div class="card-header pb-0">
+    <span class="card-title ">Affecter Type Préstataire à Préstataire</span>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="card-body">
+    <form [formGroup]="providerTypeProviderService.addOrEditProviderTypeProviderForm" autocomplete="off"
+        (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label>Type Préstatire</label>
+            <ng-select [items]="providerTypeService.ListAllProviderTypes" bindLabel="providerTypeLabel"
+                bindValue="providerTypeId" [multiple]="false" formControlName="fK_ProviderType">
+            </ng-select>
+        </div>
+
+        <div class="form-group">
+            <label>Préstataire(s)</label>
+            <ng-select [items]="providerService.ListAllProviders " [multiple]="true" bindLabel="providerName"
+                bindValue="providerId" formControlName="fK_Provider">
+            </ng-select>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" [disabled]="providerTypeProviderService.addOrEditProviderTypeProviderForm.invalid"
+                class="btn btn-primary">Enregistrer</button>
+
+            <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Annuler</button>
+
+        </div>
+    </form>
+</div>

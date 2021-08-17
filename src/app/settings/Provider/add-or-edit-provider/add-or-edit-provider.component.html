@@ -1,0 +1,52 @@
+<div class="card-header pb-0">
+  <span class="card-title ">Ajouter ou Modifier Un Préstataire</span>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="card-body">
+  <form [formGroup]="providerService.addOrEditProviderForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Nom Préstataire</label>
+      <input type="text" class="form-control" formControlName="providerName" placeholder="Nom Préstataire">
+    </div>
+    <div class="form-group">
+      <label>Adresse</label>
+      <input type="text" class="form-control" formControlName="address" placeholder="Adresse">
+    </div>
+    <div class="form-group">
+      <label>N° Tél</label>
+      <input type="number" class="form-control" formControlName="providerTel" placeholder="N° Tél Préstataire">
+    </div>
+    <div>
+      <div class="custom-control custom-switch " [hidden]="false">
+        <input type="checkbox" class="custom-control-input" id="isApproved" [checked]="false" [disabled]="false"
+          formControlName="isApproved">
+        <input *ngIf="providerService.addOrEditProviderForm.controls.isApproved.value== true" type="checkbox"
+          class="custom-control-input" id="isApproved" [checked]="false" [disabled]="false" formControlName="isApproved"
+          checked>
+        <label class="custom-control-label d-inline w-100" for="isApproved">Aggré(e) par Etat ? <small></small>
+        </label>
+      </div>
+
+    </div>
+
+    <div class="form-group" *ngIf="providerService.addOrEditProviderForm.controls.isApproved.value==true">
+      <form [formGroup]="attachmentService.addOrEditAttachment" (ngSubmit)="onSubmit()">
+        <label>Fichier</label>
+        <div class="custom-file">
+          <input type="file" (change)="attachmentService.upload($event)" class="custom-file-input" id="customFile">
+          <label class="custom-file-label" for="customFile">{{attachmentService?.attachedFileName}}</label>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary"
+        [disabled]=" providerService.addOrEditProviderForm.invalid || attachmentService.addOrEditAttachment.invalid ">Enregistrer</button>
+
+      <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Annuler</button>
+
+    </div>
+  </form>
+</div>

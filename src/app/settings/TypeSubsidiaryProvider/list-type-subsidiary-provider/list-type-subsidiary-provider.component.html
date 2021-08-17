@@ -1,0 +1,62 @@
+<div class="header bg-gradient-lignt pb-1 pt-2 pt-md-2">
+</div>
+<div class="row mb-2">
+  <div class="col-sm-6">
+    <h5></h5>
+  </div>
+  <div class="col-sm-6 ">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+      <li class="breadcrumb-item active">Affectation Type-Déchet Prestataire</li>
+    </ol>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Liste des Prestataires par Type Déchets</h3>
+    <div class="card-tools">
+      <button class="btn  btn-outline-primary btn-sm" (click)="AffectSubsidiaryTypeProvider()">
+        <i class="fas fa-plus-circle"></i> Ajouter </button>
+    </div>
+  </div>
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover">
+      <thead class="text-xs  bg-light shadow-sm">
+        <tr>
+          <th> Nature </th>
+          <th> Filiale </th>
+          <th></th>
+          <th></th>
+          <th> Type déchet</th>
+          <th></th>
+          <th> Prestataire </th>
+          <th> Type Préstatire </th>
+          <th>Action</th>
+          <!-- <th> Action </th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of typeSubsidiaryProviderService.ListAllTypeSubsidiaryProviders  ">
+          <td>{{item.natureLabel}}</td>
+          <td>{{item.label}}</td>
+          <td></td>
+          <td></td>
+          <td>{{item.typeLabel}}</td>
+          <td></td>
+          <td>{{item.providerName}}</td>
+          <td>{{item.providerTypeLabel}}</td>
+          <td>
+            <div class="btn-group ">
+
+              <button class="btn btn-sm btn-default" (click)="onDeleteType_Subsidiary_Provider(item)">
+                <i class="fa fa-trash text-danger"></i></button>
+
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <pagination-controls class="text-center" (pageChange)="p = $event" id="first"
+      previousLabel="Préc" nextLabel="Suiv"></pagination-controls>  -->
+  </div>

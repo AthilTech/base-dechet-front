@@ -1,0 +1,66 @@
+<div class="header bg-gradient-lignt pb-1 pt-2 pt-md-2">
+</div>
+<div class="row mb-2">
+  <div class="col-sm-6">
+    <h5></h5>
+  </div>
+  <div class="col-sm-6 ">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+      <li class="breadcrumb-item active">Gestion Préstataire</li>
+    </ol>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Liste des Préstataires</h3>
+    <div class="card-tools">
+      <button class="btn  btn-outline-primary btn-sm" (click)="AddProvider()">
+        <i class="fas fa-plus-circle"></i> Ajouter</button>
+    </div>
+  </div>
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover">
+      <thead class="text-xs  bg-light shadow-sm">
+        <tr>
+          <th> Nom </th>
+          <th>N° Tél</th>
+          <th>Adresse</th>
+          <th>Aggré(e)</th>
+          <th>Piéce jointe</th>
+
+          <th></th>
+          <th> Action </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of this.providerService.ListAllProviders ">
+          <td>{{item.providerName}}</td>
+          <td>{{item.providerTel}}</td>
+          <td>{{item.address}}</td>
+          <td *ngIf="item.isApproved == false" class=" text-secondary  ">{{item.isApproved}}</td>
+          <td *ngIf="item.isApproved == true" class="  text-success ">{{item.isApproved}}</td>
+
+
+          <td *ngIf="item.isApproved == true">
+            <button (click)="onDownloadFile(item.filePath)" class="btn btn-sm btn-info rounded mr-2"><span
+                class="fas fa-file-download  text-white"></span> </button>
+            <!-- <u><a (click)="onDownloadFile(item.filePath)">{{item.fileName}}</a></u> -->
+
+          </td>
+          <td *ngIf="item.isApproved == false"><small>non aggré(e)</small></td>
+          <td></td>
+          <td>
+            <div class="btn-group ">
+              <button class="btn btn-sm btn-default" (click)="onUpdateProvider(item)">
+                <i class="fas fa-pen text-primary"></i></button>
+              <button class="btn btn-sm btn-default" (click)="onDeleteProvider(item)">
+                <i class="fa fa-trash text-danger"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <pagination-controls class="text-center" (pageChange)="p = $event" id="first"
+      previousLabel="Préc" nextLabel="Suiv"></pagination-controls>  -->
+  </div>

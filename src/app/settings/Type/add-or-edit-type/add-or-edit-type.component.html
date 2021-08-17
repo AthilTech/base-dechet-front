@@ -1,0 +1,101 @@
+<div class="card-header pb-0">
+  <span class="card-title ">Ajouter ou Modifier Un Type de Déchet</span>
+ 
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="card-body">
+  <form [formGroup]="typeService.addOrEditType_SubsidiaryForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <!-- <div class="form-group" [hidden]="typeService.addSubType">
+      <label>Filiale</label>
+      <ng-select [items]="subsidiaryService.ListActiveSubsidiaries" bindLabel="label" bindValue="subsidiaryId"
+        [multiple]="false" formControlName="fK_Subsidiary">
+      </ng-select>
+    </div> -->
+
+    <div class="" formGroupName="type">
+      <div class="form-group" [hidden]="typeService.addSubType">
+        <label>Nature</label>
+        <ng-select [items]="natureService.ListNature" bindLabel="natureLabel" bindValue="natureId" [multiple]="false"
+          formControlName="fK_Nature">
+        </ng-select>
+      </div>
+      <ng-container
+        *ngIf="typeService.addOrEditType_SubsidiaryForm.controls.type['controls'].fK_Type.value !='00000000-0000-0000-0000-000000000000' && typeService.addOrEditType_SubsidiaryForm.controls.type['controls'].fK_Type.value !=null  ">
+        <div class="form-group" [hidden]="!typeService.addSubType">
+          <label> Sous Type Déchet</label>
+          <input type="text" class="form-control" formControlName="typeLabel" placeholder="Sous Type Déchet ">
+        </div>
+      </ng-container>
+      <div class="form-group" [hidden]="typeService.addSubType">
+        <ng-container>
+          <label>Type Déchet</label>
+          <input type="text" class="form-control" formControlName="typeLabel" placeholder="Type Déchet ">
+        </ng-container>
+      </div>
+      <!-- <div class="form-group" [hidden]="typeService.addSubType">
+        <label>Mode de gestion</label>
+        <ng-select [items]="modeGestionServiceService.ListModeGestion" bindLabel="managementModeLabel"
+          bindValue="managementModeId" [multiple]="false" formControlName="fK_ManagementMode">
+        </ng-select>
+      </div> -->
+    </div>
+    <!-- <div class="" formGroupName="type" [hidden]="typeService.addSubType">
+
+      <div class="form-group">
+        <label>Conditionnement de dechet</label><small class="p-3" *ngIf="typeService.openModalForUpdate == true">
+          {{typeService.selectedType.conditioningLabel}}, {{typeService.selectedType.value}} </small>
+        <ng-select [items]="typeService.ListConditionnement" bindLabel="typeService.ListConditionnement"
+          bindValue="typeService.ListConditionnement" [multiple]="false" (change)="selectedConditioning($event)">
+        </ng-select>
+      </div>
+
+      <div class="form-group" *ngIf="selectedConditioningLabel != ''">
+        <label>Type {{selectedConditioningLabel}}</label>
+        <ng-select [items]="typeService.ListAssociatedConditioningTypes" bindLabel="value" bindValue="conditioningId"
+          [multiple]="false" formControlName="fK_Conditioning" [multiple]="false"
+          (change)="selectedConditioning($event)">
+        </ng-select>
+      </div>
+      <div>
+        <div class="custom-control custom-switch " [hidden]="typeService.openModalForUpdate">
+          <input type="checkbox" class="custom-control-input" id="miseEnDecharge"
+            [checked]="typeService.addOrEditType_SubsidiaryForm.controls.type['controls'].miseEnDecharge.value==true"
+            formControlName="miseEnDecharge" addOrEditType_SubsidiaryForm>
+          <label class="custom-control-label d-inline w-100" for="miseEnDecharge">Posséde-t-il un Objectif ? (<small>Cas
+              Mise en décharge</small>)
+          </label>
+        </div>
+
+      </div>
+    </div> -->
+    <!-- <div class="" formGroupName="goal" [hidden]="typeService.addSubType">
+      <div class="form-group mt-2"
+        *ngIf="typeService.addOrEditType_SubsidiaryForm.controls.type['controls'].miseEnDecharge.value==true">
+        <label>Objectif</label>
+        <input type="number" class="form-control" formControlName="goalValue" placeholder="Value ">
+      </div>
+
+      <div class="form-group"
+        *ngIf="typeService.addOrEditType_SubsidiaryForm.controls.type['controls'].miseEnDecharge.value==true">
+
+        <label>Date</label><small
+          class="pl-2">{{typeService.addOrEditType_SubsidiaryForm.controls.goal['controls'].date?.value |
+          date:'dd/MM/yyyy '}} </small>
+        <input type="date" class="form-control" formControlName="date" placeholder="Value ">
+      </div>
+    </div> -->
+    <ng-container>
+
+    </ng-container>
+
+    <div class="modal-footer">
+      <!-- <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Annulé</button> -->
+      <!-- <button type="submit" (click)="onSubmit()" class="btn btn-primary">Enregistrer</button>
+            -->
+      <button type="submit" class="btn btn-primary"> Enregistrer</button>
+    </div>
+  </form>
+  {{typeService.addOrEditType_SubsidiaryForm.value | json}}
+</div>

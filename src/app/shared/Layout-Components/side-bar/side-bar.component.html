@@ -1,0 +1,196 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <div class="sidebar">
+      <!-- user panel -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image my-auto">
+         
+          <img src="/assets/Images/user.png"  class="img-circle "> 
+                
+        </div>
+        <div class="info">
+          <span class="text-white d-block ">FullName</span>
+          <span class="text-white d-block "><span class="text-muted badge badge-light">
+             role in app
+            </span></span>
+        </div>
+      </div>
+      <!-- end user panel -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-legacy nav-flat"
+       data-widget="treeview" role="menu" >
+        <li class="nav-header">
+          <small class="bg-info rounded-right text-white pl-3 pr-2">PARAMETRAGE</small></li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-building text-white"></i>
+            <p>
+              Filiales
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/subsidiary" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p>Filiales </p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-recycle text-white"></i>
+            <p>
+            Type Déchet
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/list-nature" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p> Nature  </p>
+              </a>
+            </li>
+      
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/list-Conditionnement" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p>  Conditionnement de déchet </p>
+              </a>
+            </li>
+          </ul> 
+
+          <ul class="nav nav-treeview">
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/list-modeGestion" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p>  Mode de gestion </p>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="nav nav-treeview">
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/list-type" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p>  Type </p>
+              </a>
+            </li>
+          </ul>
+
+
+          <ul class="nav nav-treeview">
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/type-subsidiary" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p>  Type-Filiale </p>
+              </a>
+            </li>
+          </ul>
+          
+        
+        </li>
+
+        <!-- Prestataire just for demo -->
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-users text-white"></i>
+            <p>
+            Prestataire
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/provider-type" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p>Type Prestataire </p>
+              </a>
+            </li>
+     
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/provider" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fa fa-circle text-info"></i>
+                <p> Prestataire </p>
+              </a>
+            </li>
+        
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/provider-type-provider" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fa fa-circle text-info"></i>
+                <p>Affec. Prestataire </p>
+              </a>
+            </li>
+     
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/type-subsidiary_provider" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fa fa-circle text-info"></i>
+                <p> Type-Filiale Prestataire </p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-coins text-white"></i>
+            <p>
+            Frais
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/list-type-frais" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p> Type Frais </p>
+              </a>
+            </li>
+      
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/list-type-frais-nature" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fa fa-circle text-info"></i>
+                <p> Type-Frais Nature </p>
+              </a>
+            </li>
+        
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/list-frais" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p>  Frais </p>
+              </a>
+            </li>
+          </ul>
+        
+        </li>
+        
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fas fa-star text-white"></i>
+            <p>
+            Classement
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item has-treeview">
+              <a routerLink="/Waste-base/settings/ranking" routerLinkActive="active" class="nav-link">
+                <i class="nav-icon text-xs fas fa-circle text-info"></i>
+                <p> Classement </p>
+              </a>
+            </li>
+          </ul>
+        
+        </li>
+
+
+        <li class="nav-header">
+          <small class="bg-warning rounded-right text-white pl-3 pr-2">FICHE SUIVI DECHET</small></li>
+      </ul>
+  
+      </nav>
+    </div>
+  </aside>
+  

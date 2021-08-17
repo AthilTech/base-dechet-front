@@ -1,0 +1,72 @@
+<div class="mx-auto">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- <div style="margin-left: 400px;"><button (click)="addItem()" class="button" style="   text-align: center;background-color: rgb(12, 122, 224);border-bottom: 3px solid #666;
+      border-radius: 5px; color: aliceblue;"> Add</button></div> -->
+
+      <button style="margin-left: 350px;" class="btn  btn-outline-primary btn-sm" (click)="addItem()">
+        <i class="fas fa-plus-circle"></i> Ajouter Type</button>
+    </div>
+
+    <form [formGroup]="conditionnementService.formConditionnement" autocomplete="off" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+
+        <input formControlName="conditioningId" class="form-control" type="hidden">
+        <div class="form-group">
+
+          <label>Conditionnement</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <!-- <span class="input-group-text bg-primary"
+                *ngIf="conditionnementService.formConditionnement.controls.conditioningId.value=='00000000-0000-0000-0000-000000000000'">
+                <i class="far fa-comment-alt text-white"></i>
+              </span>
+              <span class="input-group-text bg-warning"
+                *ngIf="conditionnementService.formConditionnement.controls.conditioningId.value!='00000000-0000-0000-0000-000000000000'">
+                <i class="far fa-comment-alt text-white"></i>
+              </span> -->
+            </div>
+            <input type="text" class="form-control" formControlName="conditioningLabel"
+              placeholder="saisir conditionnement" [class.is-invalid]="conditionnementService.formConditionnement.controls.conditioningLabel.errors?.required && 
+            conditionnementService.formConditionnement.controls.conditioningLabel.touched">
+          </div>
+        </div>
+        <div>
+          <label>Type Conditionnement</label>
+          <div class="form-group">
+            <div [formGroup]="conditionnementService.orderForm">
+              <div formArrayName="items" *ngFor="let item of getform; let i = index;">
+                <div [formGroupName]="i">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <!-- <span class="input-group-text bg-primary"
+                        *ngIf="conditionnementService.formConditionnement.controls.conditioningId.value=='00000000-0000-0000-0000-000000000000'">
+                        <i class="far fa-comment-alt text-white"></i></span>
+                      <span class="input-group-text bg-warning"
+                        *ngIf="conditionnementService.formConditionnement.controls.conditioningId.value!='00000000-0000-0000-0000-000000000000'">
+                        <i class="far fa-comment-alt text-white"></i></span> -->
+                    </div>
+                    <input type="text" class="form-control" formControlName="value"
+                      placeholder="saisir Type conditionnement ">
+                      <!-- <button (click)="removeConditionnement(i)" class="btn btn-icon btn-danger btn-sm"><i
+                        class="fas fa-minus-square"></i></button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"
+          *ngIf="conditionnementService.formConditionnement.controls.conditioningId.value=='00000000-0000-0000-0000-000000000000'">
+          Enregistrer</button>
+        <button type="submit" class="btn btn-warning"
+          *ngIf="conditionnementService.formConditionnement.controls.conditioningId.value!='00000000-0000-0000-0000-000000000000'">
+          Modifier</button>
+        <button class="button" class="btn btn-light" (click)="reinitialiser()" data-dismiss="modal">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>

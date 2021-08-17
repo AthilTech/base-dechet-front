@@ -1,0 +1,21 @@
+<div class="card-header pb-0">
+  <span class="card-title ">Ajouter ou Modifier Un Type Préstataire</span>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="card-body">
+  <form [formGroup]="providerTypeService.addOrEditProviderTypeForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Type Préstataire</label>
+      <input type="text" class="form-control" formControlName="providerTypeLabel" placeholder="Libellé Préstataire">
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" [disabled]="providerTypeService.addOrEditProviderTypeForm.invalid"
+        class="btn btn-primary">Enregistrer</button>
+      <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Annuler</button>
+
+    </div>
+  </form>
+</div>

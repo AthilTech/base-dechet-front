@@ -1,0 +1,83 @@
+<div class="header bg-gradient-lignt pb-1 pt-2 pt-md-2">
+</div>
+<div class="row mb-2">
+  <div class="col-sm-6">
+    <h5></h5>
+  </div>
+  <div class="col-sm-6 ">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+      <li class="breadcrumb-item active">Mode Gestion</li>
+    </ol>
+  </div>
+</div>
+
+<div class="mx-auto" style="margin-top: 20px;">
+  <div class="card ">
+    <div class="card-header">
+      <h4 class="card-title ">Liste des Modes de Gestion</h4>
+      <!-- <div class="card-tools">
+        <button class="btn  btn-outline-primary btn-sm" (click)="onAddModeGestionModal()" (click)="resetForm()"
+          data-toggle="modal" data-target="#AddEditModeGestionModal">
+          <i class="fas fa-plus-circle"></i> Ajouter </button>
+      </div> -->
+    </div>
+
+    <div class="">
+      <table class="table">
+        <thead class="text-xs  bg-light shadow-sm">
+          <tr style="text-align: center;">
+            <th>Nature</th>
+            <th>Mode Gestion</th>
+            <!-- <th>Action</th> -->
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of modeGestionService.ListModeGestion ">
+            <td style="text-align: center;">
+              <div class="badge badge-danger" *ngIf="item.natureLabel=='Dangereux'"> {{item.natureLabel}}</div>
+              <div class="badge badge-warning" *ngIf="item.natureLabel=='Non Dangereux'"> {{item.natureLabel}}</div>
+            </td>
+            <td style="text-align: center;">{{item.managementModeLabel}}</td>
+            <!-- <td style="text-align: center;">
+              <div class="btn-group"> -->
+
+                <!-- <button class="btn btn-sm btn-default" (click)="onUpdateModeGestion(item)" data-toggle="modal" data-target="#AddEditModeGestionModal">
+                <i class="fas fa-pen text-primary"></i></button> -->
+
+                <!-- <button class="btn btn-sm btn-default" (click)="onDeleteModeGestion(item)">
+                  <i class="fa fa-trash text-danger"></i></button> -->
+              <!-- </div>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls class="text-center" id="first" previousLabel="Préc" nextLabel="Suiv"></pagination-controls>
+
+    </div>
+
+    <!--  Add or edit ModeGestion modal  -->
+    <div class="modal hide fade" id="AddEditModeGestionModal" tabindex="-1" role="dialog"
+      aria-labelledby="AddEditModeGestionModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="AddEditModeGestionModalTitle" class="text-dark" >
+      <i class="fas fa-plus-circle" ></i> Ajouter Mode Gestion </h5>
+    
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+          </div>
+
+          <div class="modal-body p-1">
+            <app-add-or-edit-management-mode></app-add-or-edit-management-mode>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

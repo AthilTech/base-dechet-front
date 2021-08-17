@@ -1,0 +1,31 @@
+<div class="mx-auto">
+  <form [formGroup]="coastsTypeService.CoastsTypeForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="card-body">
+      <input formControlName="coastsTypeId" class="form-control" type="hidden">
+      <div class="form-group">
+        <label>Type Frais</label>
+        <div class="input-group">
+          <!-- <div class="input-group-prepend"> 
+                <span class="input-group-text bg-primary" *ngIf="coastsTypeService.CoastsTypeForm.controls.coastsTypeId.value=='00000000-0000-0000-0000-000000000000'" >
+                  <i class="far fa-comment-alt text-white"></i>
+                </span>
+                   <span class="input-group-text bg-warning" *ngIf="coastsTypeService.CoastsTypeForm.controls.coastsTypeId.value!='00000000-0000-0000-0000-000000000000'" >
+                   <i class="far fa-comment-alt text-white"></i></span>
+              </div> -->
+          <input type="text" class="form-control" formControlName="coastsTypeLabel" placeholder="saisir Type Frais"
+            [class.is-invalid]="coastsTypeService.CoastsTypeForm.controls.coastsTypeLabel.errors?.required && 
+            coastsTypeService.CoastsTypeForm.controls.coastsTypeLabel.touched">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary"
+        *ngIf="coastsTypeService.CoastsTypeForm.controls.coastsTypeId.value=='00000000-0000-0000-0000-000000000000'">
+        Enregistrer</button>
+      <button type="submit" class="btn btn-warning"
+        *ngIf="coastsTypeService.CoastsTypeForm.controls.coastsTypeId.value!='00000000-0000-0000-0000-000000000000'">
+        Modifier</button>
+      <button type="button" class="btn btn-light" data-dismiss="modal">Annuler</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,51 @@
+<div class="card-header pb-0">
+  <span class="card-title ">Ajouter Frais </span>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="card-body">
+
+  <form [formGroup]="fraisService.addOrEditCoastsForm" autocomplete="off" (ngSubmit)="onSubmit()">
+    <input formControlName="coastsId" class="form-control" type="hidden">
+    <div class="form-group">
+      <label>Nature</label>
+      <select class="form-control" (change)="getlistTypeFraisByNature($event.target)">
+        <option value="00000000-0000-0000-0000-000000000000" disabled selected>
+          Selectionnez une Natrue
+        </option>
+        <option class="form-control" *ngFor="let nat of natureService.ListNature" value={{nat.natureId}}>
+          {{nat.natureLabel}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Type Frais</label>
+      <!-- <ng-select
+            [items]="typeFraisNatureService.ListTypeFrais"
+            bindLabel="typeFraisLibelle"
+            formControlName="fkTypeFraisNature" 
+            bindValue="natureId">
+           </ng-select> -->
+      <select class="form-control" formControlName="fkTypeFraisNature">
+        <option value="00000000-0000-0000-0000-000000000000" disabled selected>
+          Selectionnez une Type Frais
+        </option>
+        <option class="form-control" *ngFor="let item of typeFraisNatureService.ListTypeFrais"
+          value={{item.typeFraisNatureId}}>{{item.typeFraisLibelle}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Montant</label>
+      <div class="input-group">
+        <input type="number" class="form-control" formControlName="amount" placeholder="saisir montant"
+          [class.is-invalid]="fraisService.addOrEditCoastsForm.controls.amount.errors?.required && fraisService.addOrEditCoastsForm.controls.amount.touched">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" (click)="bsModalRef.hide()" [disabled]="fraisService.addOrEditCoastsForm.invalid"
+        class="btn btn-primary">Enregistrer</button>
+      <button type="button" (click)="bsModalRef.hide()" class="btn btn-secondary">Annuler</button>
+    </div>
+  </form>
+</div>

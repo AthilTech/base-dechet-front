@@ -1,0 +1,46 @@
+<div class="mx-auto">
+    <form [formGroup]="goalService.formGoal" autocomplete="off" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+   
+          <input formControlName="goalId" class="form-control" type="hidden"> 
+          <div class="form-group">
+  
+            <label>Objectif</label>
+            <div class="input-group">
+              <div class="input-group-prepend"> 
+                <span class="input-group-text bg-primary" *ngIf="goalService.formGoal.controls.goalId.value=='00000000-0000-0000-0000-000000000000'" >
+                  <i class="far fa-comment-alt text-white"></i></span>
+                   <span class="input-group-text bg-warning" *ngIf="goalService.formGoal.controls.goalId.value!='00000000-0000-0000-0000-000000000000'" >
+                   <i class="far fa-comment-alt text-white"></i></span>
+              </div>
+              <input type="number" class="form-control" formControlName="goalValue" placeholder="saisir value"
+                [class.is-invalid]="goalService.formGoal.controls.goalValue.errors?.required && 
+            goalService.formGoal.controls.goalValue.touched">
+            </div>
+
+            <label>Date</label>
+            <div class="input-group">
+              <div class="input-group-prepend"> 
+                <span class="input-group-text bg-primary" *ngIf="goalService.formGoal.controls.goalId.value=='00000000-0000-0000-0000-000000000000'" >
+                  <i class="far fa-comment-alt text-white"></i></span>
+                   <span class="input-group-text bg-warning" *ngIf="goalService.formGoal.controls.goalId.value!='00000000-0000-0000-0000-000000000000'" >
+                   <i class="far fa-comment-alt text-white"></i></span>
+              </div>
+              <input type="date" class="form-control" formControlName="date" placeholder="saisir date"
+                [class.is-invalid]="goalService.formGoal.controls.date.errors?.required && 
+            goalService.formGoal.controls.date.touched">
+            </div>
+          </div> 
+  
+          
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" *ngIf="goalService.formGoal.controls.goalId.value=='00000000-0000-0000-0000-000000000000'">
+          Enregistrer</button>
+          <button type="submit" class="btn btn-warning" *ngIf="goalService.formGoal.controls.goalId.value!='00000000-0000-0000-0000-000000000000'">
+            Modifier</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal">Réinitialiser</button>
+      </div>
+    </form>
+  </div>
+  

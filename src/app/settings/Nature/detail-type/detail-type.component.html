@@ -1,0 +1,105 @@
+<ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+
+        <div class="btn-group">
+            Liste des Types Par Nature
+            <div class="badge badge-pill badge-warning mb-1 float" style="margin-left: 10px;"
+                *ngIf="typeService.listSousTypeGroupedByNature.length > 0">
+                {{typeService.listSousTypeGroupedByNature[0]?.natureLabel}}
+            </div>
+        </div>
+        <span class="">
+            <div class=" input-group" *ngIf="typeService.listSousTypeGroupedByNature.length > 0">
+                <!-- <input type="text" class="form-control" placeholder="chercher..."> -->
+                <input type="text" class="form-control" placeholder="chercher..." [(ngModel)]="term">
+                <div class=" input-group-btn">
+                    <button class=" btn" style="background-color: #53a9be; color: white;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </span>
+    </li>
+</ul>
+<div *ngIf="typeService.listSousTypeGroupedByNature.length > 0">
+    <div class="card collapsed-card"
+        *ngFor="let itemtype of typeService.listSousTypeGroupedByNature | filter:term | paginate : { id: 'DetailPagination',itemsPerPage: 7, currentPage: p } ">
+        <div class="table-responsive p-3">
+            <table class="table table-hover table-bordered">
+                <thead class="p-0 text-muted ">
+                    <tr class="align-middle table-border text-center" style="background-color: #1ba8bd ; color: white;">
+                        <!-- <th>Filiale</th> -->
+                        <th> Nature</th>
+                        <th>Type</th>
+                        <!-- <th> Objectif</th>
+                        <th> Conditionnement de dechet</th> -->
+                        <th> Détail</th>
+                    </tr>
+                </thead>
+
+                <tbody class="text-center">
+                    <tr>
+                        <!-- <td class="align-middle table-border text-center">{{itemtype.label}}</td> -->
+                        <td class="align-middle table-border text-center">{{itemtype.natureLabel}}</td>
+                        <td class="align-middle table-border text-center">{{itemtype.typeLabel}}</td>
+                        <!-- <td class="align-middle table-border text-center">{{itemtype.goalValue}}</td>
+                        <td class="align-middle table-border text-center" *ngIf="itemtype.conditioningLabel !=null">
+                            {{itemtype.conditioningLabel}}, {{itemtype.value}}</td>
+                        <td class="align-middle table-border text-center" *ngIf="itemtype.conditioningLabel ==null">-
+                        </td> -->
+                        <td>
+                            <div class="btn-group " *ngIf="itemtype.listSousType.length > 0">
+                                <div class="btn-group ">
+                                    <div class="card-tools btn-group">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-default"
+                                                data-card-widget="collapse">
+                                                <i class="fas fa-minus text-primary"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card-body p-0">
+            <!-- <ng-container *ngIf="itemtype.listSousType.length == 0">
+    
+                <div class="box-header with-border text-center">
+                    <i class="fa fa-warning text-center  "></i>
+                    <br>
+                    <span class="box-title">Pas de Sous Type</span>
+                </div>
+            </ng-container> -->
+
+            <ng-container *ngIf="itemtype.listSousType.length > 0">
+                <table class="table table-hover ">
+                    <thead class="p-0 text-muted ">
+                        <tr class="align-middle table-border text-center">
+                            <th> Sous Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let itemsSousTypes of itemtype.listSousType">
+                            <td class="">{{itemsSousTypes.typeLabel}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ng-container>
+        </div>
+        <pagination-controls id="DetailPagination" class="my-pagination text-right" (pageChange)="p = $event"
+            previousLabel="Prec " nextLabel="Suiv " *ngIf="typeService.listSousTypeGroupedByNature.length">
+        </pagination-controls>
+        <!-- <pagination-controls id="TypePagination" class="my-pagination text-right" (pageChange)="p = $event"
+        previousLabel="Prec " nextLabel="Suiv " *ngIf="typeService.listSousTypeGroupedByNature.length">
+    </pagination-controls> -->
+    </div>
+</div>
+
+<!-- <div class="d-flex justify-content-center" *ngIf="typeService.listSousTypeGroupedByNature.length == 0">
+   Liste Détail type par Nature est Vide 
+      </div> -->

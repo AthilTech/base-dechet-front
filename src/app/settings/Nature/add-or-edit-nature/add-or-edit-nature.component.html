@@ -1,0 +1,36 @@
+<div class="mx-auto">
+  <form [formGroup]="natureService.formNature" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="card-body">
+
+      <input formControlName="natureId" class="form-control" type="hidden">
+      <div class="form-group">
+
+        <label>Nature</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-primary"
+              *ngIf="natureService.formNature.controls.natureId.value=='00000000-0000-0000-0000-000000000000'">
+              <i class="far fa-comment-alt text-white"></i></span>
+            <span class="input-group-text bg-warning"
+              *ngIf="natureService.formNature.controls.natureId.value!='00000000-0000-0000-0000-000000000000'">
+              <i class="far fa-comment-alt text-white"></i></span>
+          </div>
+          <input type="text" class="form-control" formControlName="natureLabel" placeholder="saisir nature"
+            [class.is-invalid]="natureService.formNature.controls.natureLabel.errors?.required && 
+            natureService.formNature.controls.natureLabel.touched">
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary"
+        *ngIf="natureService.formNature.controls.natureId.value=='00000000-0000-0000-0000-000000000000'">
+        Enregistrer</button>
+      <button type="submit" class="btn btn-warning"
+        *ngIf="natureService.formNature.controls.natureId.value!='00000000-0000-0000-0000-000000000000'">
+        Modifier</button>
+      <button type="button" class="btn btn-light" data-dismiss="modal">Réinitialiser</button>
+    </div>
+  </form>
+</div>

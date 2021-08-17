@@ -1,0 +1,43 @@
+<!-- 
+  <div class="card-header pb-0">
+    <span class="card-title ">Ajouter ou Modifier Un Rôle</span>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="card-body">
+    <form [formGroup]="userService.formUser" autocomplete="off" (ngSubmit)="onSubmit()">
+        
+      <div class="form-group">
+          <label>Utilisateur</label>
+          <ng-select [items]="resultedUserList" 
+          bindLabel="fullName" 
+          labelForId="matricule" 
+          bindValue="userID"
+          (search)=" onSearchChange($event)" 
+           formControlName="userID">
+          </ng-select>
+      </div>
+
+      <div class="form-group">
+          <label>Rôle</label>
+          <ng-select
+          [items]="AppRoleList" 
+          bindLabel="name" 
+          bindValue="id"
+          [multiple]="false"
+          formControlName="appRoleId"
+      >
+         </ng-select>
+        </div>
+     
+
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Annulé</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+        </div>
+    </form>
+</div>
+ -->

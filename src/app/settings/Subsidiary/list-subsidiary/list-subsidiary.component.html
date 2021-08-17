@@ -1,0 +1,105 @@
+<div class="header bg-gradient-lignt pb-1 pt-2 pt-md-2">
+</div>
+<div class="row mb-2">
+  <div class="col-sm-6">
+    <h5></h5>
+  </div>
+  <div class="col-sm-6 ">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+      <li class="breadcrumb-item active">Gestion Filiales</li>
+    </ol>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Liste des Filiales</h3>
+    <!-- <div class="card-tools">
+        <button class="btn  btn-outline-primary btn-sm" >
+            <i class="fas fa-plus-circle" ></i> Ajouter Rôle</button>
+      </div> -->
+  </div>
+  <!-- <div class="section-body">
+    <div class="alert alert-has-icon w-100 border shadow-sm mt-0">
+      <div class="alert-icon"><i class="fas fa-filter text-secondary"></i></div>
+      <div class="alert-body">
+        <div class="alert-title text-secondary">Filter</div>
+        <form [formGroup]="subsidiaryListSearchForm">
+          <div class="row p-3 ">
+ 
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Filiale </label>
+                <input type="text" class="form-control" name="label" formControlName="label">
+              </div>
+            </div>
+
+   
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
+  <div class="card-body table-responsive p-0">
+    <div class="">
+      <table class="table table-hover">
+        <thead class="text-xs  bg-light shadow-sm">
+          <tr>
+            <!-- <th >Secteur</th> -->
+            <th>Secteur</th>
+            <th> Code Entité</th>
+            <!-- <th></th>
+                <th></th>
+                <th></th>
+                <th></th> -->
+            <th> Libellé </th>
+            <th> Action </th>
+            <!-- <th> Action </th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let subsidiary of subsidiaryService.ListAllSubsidiaries ; let i=index">
+            <!-- [hidden]="subsidiaryListSearchForm.controls.label.value.length != 0" -->
+            <td
+              [attr.rowspan]="countSubsidiariesByfkSector(subsidiary.fkSector,i)"
+              *ngIf="currentSector !=subsidiary.fkSector ">
+              <!-- <span *ngIf="ubsidiary.fkSector != null">
+
+          </span> -->
+              {{subsidiary.sectorLabel}}
+            </td>
+            <!-- [hidden]="subsidiaryListSearchForm.controls.label.value.length == 0" -->
+            <!-- <td > {{subsidiary.sectorLabel}}</td> -->
+
+            <!-- <td >{{subsidiary.sectorLabel}}</td> -->
+            <td *ngIf="subsidiary.entityCode != null">{{subsidiary.entityCode}}</td>
+            <td *ngIf="subsidiary.entityCode == null"> <i class="fa fa-ban" aria-hidden="true"></i></td>
+            <!-- <td></td>
+            <td></td>
+            <td></td>
+            <td></td> -->
+
+            <td>{{subsidiary.label}}</td>
+            <td>
+              <div class="checkbox">
+                <label *ngIf="subsidiary.isActive == true">
+                  <input #check id="check" type="checkbox" (change)="assignSubsidiary(check.checked , subsidiary)"
+                    checked>
+                </label>
+                <label *ngIf="subsidiary.isActive == false">
+                  <input #check id="check" type="checkbox" (change)="assignSubsidiary(check.checked , subsidiary)">
+                </label>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <pagination-controls class="text-center" (change)="changePage()"(pageChange)="p = $event" id="first"
+      previousLabel="Préc" nextLabel="Suiv"></pagination-controls>  -->
+      <!-- <pagination-controls id="RequestPagination"  class="text-center" (pageChange)="p = $event"
+                previousLabel="Prec" nextLabel="Suiv" >
+            </pagination-controls> -->
+    </div>
+  </div>

@@ -1,0 +1,212 @@
+<div class="modal-content" >
+    <div class="modal-header">
+      <h6><strong>Ajouter</strong>  Fiche</h6>
+      <button type="button" class="close pull-right" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- this is a form -->
+      <div class="card-body ">
+        <div class="row ml-auto mr-auto mt-4 ml-2">
+
+            <div class="form-group col-md-3">
+              <h5>Date</h5>
+              <div class="input-group">
+                <input placeholder="month" class="form-group" type="month" (change)="changedate($event.target.value)" class="form-control" />
+    
+              </div>
+            </div>
+    
+        
+    
+     
+            <div class="form-group col-md-3">
+              <label>Secteur</label>
+              <ng-select [items]="ListDistinctSectors" 
+                
+                  bindLabel="ListDistinctSectors"
+                  bindValue="ListDistinctSectors" [multiple]="false"  (change)="changepole($event)">
+              </ng-select>
+          </div>
+
+            <div class="form-group col-md-3">
+              <label>Filiale</label>
+              <ng-select [items]="ListSubsidiariesBySectorLabel"
+              [multiple]="false"
+              bindLabel="label"
+              (change)="changesubsidiary($event)"
+              bindValue="subsidiaryId"
+            
+              >
+              </ng-select>
+          </div>
+          <div class="form-group col-md-3">
+              <label>Nature</label>
+              <ng-select [items]="listNatures"
+              [multiple]="false"
+              bindLabel="natureLabel"
+              bindValue="natureId"
+              (change)=changenature($event)
+             
+              >
+              </ng-select>
+          </div>
+          
+          <div class="form-group col-md-3">
+            <label>Type</label>
+            <ng-select [items]="typeSubsidiaryService.ListType_SubsidiariesByNatureIdAndSubsidiaryId"
+            [multiple]="false"
+            bindLabel="typeLabel"
+            bindValue="fK_Type"
+            (change)="changetype($event)"
+           
+            >
+            </ng-select>
+        </div>
+
+        <div class="form-group col-md-3" [hidden]="listSubTypes.length == 0">
+          <label>Sous Type(s)</label>
+          <ng-select [items]="listSubTypes"
+          [multiple]="false"
+          bindLabel="typeLabel"
+          bindValue="typeId"
+
+         
+          >
+          </ng-select>
+      </div>
+
+      <div class="form-group col-md-3">
+        <label>Mode De Gestion</label>
+        <ng-select [items]="ListModeGestion"
+        [multiple]="false"
+        bindLabel="managementModeLabel"
+        bindValue="managementModeId"
+        (change)="changemodegestion($event)"
+
+       
+        >
+        </ng-select>
+    </div>
+
+    <div  class="form-group col-md-3 mt-4 ml-3">
+      <button class="btn  btn-outline-primary btn-sm" (click)="addNewtrackingSheetFormArray()" >
+          <i class="fas fa-plus-circle" ></i> Ajouter </button>
+    </div>
+        
+
+ 
+    
+           
+          </div>
+
+
+
+        
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+      <form [formGroup]="dechetForm" *ngIf="trackingSheetFormArray.length > 0">
+      
+        <table class="table table-bordered table-hover table-responsive  text-center" id="checkTable">
+          <thead class="text-xs   shadow-sm">
+  
+            <tr>
+              <th>Pole</th>
+              <th style="width: 40%;">Filiale</th>
+              <th>Code Filiale</th>
+              <th >Nature</th>
+  
+              <th>Type</th>
+              <th>Type Prestataire</th>
+              <th >Conditionnement</th>
+              <th>Période enlévement</th>
+              <th>Références de borderaux</th>
+              <th>tonnage</th>
+              <th>Frais</th>
+              <th>NB Voyage</th>
+              <th>Objectif</th>
+              <th>Classement</th>
+              <th>Action(s)</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+  
+              <th></th>
+              <th></th>
+              <th></th>
+              <th> </th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+  
+          <tbody formArrayName="trackingSheetFormArray">
+            <!-- <tr *ngFor="let item of dechetForm.controls.trackingSheetFormArray.controls; let i=index">
+              <ng-container [formGroupName]="i">
+            
+                <div class="form-group">
+  
+          
+          
+                  <div [formArrayName]="'trackingSheetFormArray'"
+                    *ngFor="let FormGroup of trackingSheetFormArray?.controls ;let i=index;">
+                    <ng-container [formGroupName]="i">
+                      <div class="d-flex justify-content-between">
+                  
+                        <div class="form-group">
+                          <input placeholder="referenceBordereau1" class="form-group" type="number" class="form-control"
+                          formControlName="referenceBordereau1" />
+                        </div>
+                      </div>
+                      
+          
+          
+          
+                    </ng-container>
+          
+          
+                  </div>
+          
+                </div>
+              </ng-container>
+            </tr> -->
+          </tbody>
+        </table>
+  
+
+
+
+
+
+
+
+ 
+      
+  
+      </form> 
+      <!-- end form -->
+    </div>
+
+  
+  </div>
+  

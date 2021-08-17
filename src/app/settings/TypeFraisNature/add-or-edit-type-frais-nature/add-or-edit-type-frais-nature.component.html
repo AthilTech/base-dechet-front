@@ -1,0 +1,31 @@
+<div class="card-header pb-0">
+    <span class="card-title ">Affecter Type Frais à Nature</span>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="card-body">
+
+    <form [formGroup]="typeFraisNatureService.TypeFraisNatureForm" autocomplete="off" (ngSubmit)="onSubmit()">
+        <input formControlName="typeFraisNatureId" class="form-control" type="hidden">
+        <div class="form-group">
+            <label>Nature</label>
+            <ng-select [items]="natureService.ListNature" bindLabel="natureLabel" bindValue="natureId"
+                formControlName="fkNature">
+
+            </ng-select>
+        </div>
+        <div class="form-group">
+            <label>Type Frais</label>
+            <ng-select [items]="typeFraisService.ListCoastsTypes" bindLabel="coastsTypeLabel" bindValue="coastsTypeId"
+                formControlName="fkTypeFrais">
+            </ng-select>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" [disabled]="typeFraisNatureService.TypeFraisNatureForm.invalid"
+                class="btn btn-primary">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Annuler</button>
+        </div>
+    </form>
+</div>

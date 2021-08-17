@@ -1,0 +1,50 @@
+<div class="header bg-gradient-lignt pb-1 pt-2 pt-md-2">
+</div>
+<div class="row mb-2">
+  <div class="col-sm-6">
+    <h5></h5>
+  </div>
+  <div class="col-sm-6 ">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+      <li class="breadcrumb-item active">Gestion Classement</li>
+    </ol>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Liste des Classements</h3>
+    <div class="card-tools">
+      <button class="btn  btn-outline-primary btn-sm" (click)="AddRanking()">
+        <i class="fas fa-plus-circle"></i> Ajouter</button>
+    </div>
+  </div>
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover">
+      <thead class="text-xs  bg-light shadow-sm">
+        <tr>
+          <th> Libellé </th>
+          <th>Valeur min</th>
+          <th>Valeur Max</th>
+          <th> Action </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of rankingService.ListOAllRankings ">
+          <td>{{item.rankingLabel}}</td>
+          <td>{{item.minValue}}</td>
+          <td>{{item.maxValue}}</td>
+          <td>
+            <div class="btn-group ">
+              <button class="btn btn-sm btn-default" (click)="onUpdateRanking(item)">
+                <i class="fas fa-pen text-primary"></i></button>
+              <button class="btn btn-sm btn-default" (click)="onDeleteRanking(item)">
+                <i class="fa fa-trash text-danger"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <pagination-controls class="text-center" (pageChange)="p = $event" id="first"
+      previousLabel="Préc" nextLabel="Suiv"></pagination-controls>  -->
+  </div>

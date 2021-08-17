@@ -1,0 +1,56 @@
+<div class="card-header pb-0">
+    <span class="card-title ">Affecter Type déchet à Préstataire</span>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="card-body">
+
+
+    <form [formGroup]="typeSubsidiaryProviderService.addOrEditType_Subsidiary_ProviderForm" autocomplete="off"
+        (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Filiale</label>
+            <ng-select [items]="typeSubsidiaryService.ListAllType_Subsidiaries" formControlName="fK_Subsidiary"
+                [multiple]="false" bindLabel="label" (change)="getNatureId($event)" bindValue="fK_Subsidiary">
+            </ng-select>
+        </div>
+        <div class="form-group">
+            <label>Nature</label>
+            <ng-select [items]="listNatures" [multiple]="false" bindLabel="natureLabel" bindValue="natureId"
+                formControlName="natureId" (change)="getListTypes($event)">
+            </ng-select>
+        </div>
+        <div class="form-group">
+            <label>Types Déchets</label>
+            <ng-select [items]="typeSubsidiaryService.ListType_SubsidiariesByNatureIdAndSubsidiaryId"
+                bindLabel="typeLabel" bindValue="type_SubsidiaryId" [multiple]="true"
+                formControlName="fK_Type_Subsidiary">
+                <ng-template ng-option-tmp let-item="item">
+                    <p>{{item.typeLabel}} </p>
+                </ng-template>
+            </ng-select>
+        </div>
+
+        <div class="form-group">
+            <label>Types Préstataires</label>
+            <ng-select [items]="providerTypeService?.ListAllProviderTypes" [multiple]="false"
+                bindLabel="providerTypeLabel" bindValue="providerTypeId" (change)="change($event)">
+            </ng-select>
+        </div>
+
+        <div class="form-group">
+            <label>Préstataire</label>
+            <ng-select [items]="providerService?.ListAllProviders" [multiple]="false" bindLabel="providerName"
+                bindValue="provider_ProviderTypeId" formControlName="fK_Provider_ProviderType">
+            </ng-select>
+        </div>
+        <div class="modal-footer">
+            <button type="submit"
+                [disabled]="typeSubsidiaryProviderService.addOrEditType_Subsidiary_ProviderForm.invalid"
+                class="btn btn-primary">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Annuler</button>
+        </div>
+    </form>
+
+</div>

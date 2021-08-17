@@ -1,0 +1,81 @@
+<div class="mx-auto">
+  <form [formGroup]="modeGestionService.formModeGestion" autocomplete="off">
+    <div class="card-body">
+      <input class="form-control" type="hidden">
+      <div class="form-group">
+        <label>Nature</label>
+        <ng-select [items]="natureService.ListNature" bindLabel="natureLabel" bindValue="natureId" [multiple]="false"
+          (change)="changenature($event)">
+        </ng-select>
+      </div>
+
+      <div class="input-group-append">
+        <button class="btn btn-outline-primary" (click)="addNewManagementModeToFormArray()">
+          <i class="fas fa-plus text-primary"></i> Ajouter Mode de gestion
+        </button>
+      </div>
+
+      <!-- <div class="form-group">
+  
+            <label>Mode Gestion</label>
+            <div class="input-group">
+              <div class="input-group-prepend"> 
+                <span class="input-group-text bg-primary" *ngIf="modeGestionService.formModeGestion.controls.managementModeId.value=='00000000-0000-0000-0000-000000000000'" >
+                  <i class="far fa-comment-alt text-white"></i></span>
+                   <span class="input-group-text bg-warning" *ngIf="modeGestionService.formModeGestion.controls.managementModeId.value!='00000000-0000-0000-0000-000000000000'" >
+                   <i class="far fa-comment-alt text-white"></i></span>
+              </div>
+              <input type="text" class="form-control" formControlName="managementModeLabel" placeholder="saisir mode geston"
+                [class.is-invalid]="modeGestionService.formModeGestion.controls.managementModeLabel.errors?.required && 
+            modeGestionService.formModeGestion.controls.managementModeLabel.touched">
+            </div>
+
+          </div>  -->
+
+      <!-- <div class="form-group">
+            <div [formArrayName]="'managemantMode_Nature'"
+              *ngFor="let mmFormGroup of managemantMode_NatureFormArray?.controls ;let i=index;">
+              <ng-container [formGroupName]="i">
+                <div >
+                  <div class="">
+                  <div class="form-group">
+                    <label>Mode gestion</label>
+                    <input type="text" class="form-control" formControlName="ManagementModeLabel" placeholder="Nom Mode gestion">
+                  </div></div>
+                </div>
+              </ng-container>
+            </div>
+          </div> -->
+
+      <div class="form-group">
+        <div [formArrayName]="'managemantMode_Nature'"
+          *ngFor="let mmFormGroup of managemantMode_NatureFormArray?.controls ;let i=index;">
+          <ng-container [formGroupName]="i">
+            <div formGroupName="managementMode">
+              <div class="form-group">
+                <label>Mode gestion</label>
+                <div class="row">
+                  <div class="col-md-6 p-0">
+                    <input type="text" disabled class="form-control" [value]="mmFormGroup.get('natureLabel').value">
+                  </div>
+                  <div class="col-md-6 pl-0">
+                    <input type="text" class="form-control" formControlName="managementModeLabel"
+                      placeholder="Nom Mode gestion">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" (click)="onSubmit()" class="btn btn-primary">
+        Enregistrer</button>
+      <!-- <button type="submit" class="btn btn-warning" >
+            Modifier</button> -->
+      <button type="button" class="btn btn-light" (click)="resetForm()">Annuler</button>
+    </div>
+  </form>
+</div>

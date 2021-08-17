@@ -1,0 +1,42 @@
+<div class="card-header">
+Détails Sous Types:
+
+</div>
+<div class="card-body">
+    <div *ngIf="typeSubsidiaryService.ListSubTypesByFK_TypeForUpdate.length > 0">
+       
+       
+       <div class="card collapsed-card" >
+            
+           
+            <div class="table-responsive p-3">
+                <table class="table table-hover table-bordered">
+                    <thead class="p-0 text-muted ">
+                        <tr class="align-middle table-border text-center" style="background-color: #1ba8bd ; color: white;">
+               
+                            <th>Sous Type</th>
+                  
+                            <th> Conditionnement de dechet</th>
+                   
+                        </tr>
+                    </thead>
+    
+                    <tbody class="text-center" *ngFor="let itemtype of typeSubsidiaryService.ListSubTypesByFK_TypeForUpdate ">
+                        <tr>
+                            <td class="align-middle table-border text-center">{{itemtype.typeLabel}}</td>
+                           <td class="align-middle table-border text-center" *ngIf="itemtype.conditioningLabel !=null">
+                                {{itemtype.conditioningLabel}}, {{itemtype.conditioningTypeLabel}}</td>
+                            <td class="align-middle table-border text-center" *ngIf="itemtype.conditioningLabel ==null">-
+                            </td>
+                         
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+        
+       
+        <!-- </div> -->
+    </div>
+ </div>
+ 

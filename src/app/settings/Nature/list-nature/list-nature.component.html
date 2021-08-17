@@ -1,0 +1,93 @@
+<div class="header bg-gradient-lignt pb-1 pt-2 pt-md-2">
+</div>
+<div class="row mb-2">
+  <div class="col-sm-6">
+    <h5></h5>
+  </div>
+  <div class="col-sm-6 ">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+      <li class="breadcrumb-item active">Nature</li>
+    </ol>
+  </div>
+</div>
+
+<div class="mx-auto" style="margin-top: 20px;">
+  <div class="card ">
+    <div class="card-header">
+      <h4 class="card-title ">Liste des Natures</h4>
+      <!-- <div class="card-tools">
+        <button class="btn  btn-outline-primary btn-sm" (click)="onAddNatureModal()" data-toggle="modal"
+          data-target="#AddEditNatureModal">
+          <i class="fas fa-plus-circle"></i> Ajouter Nature</button>
+      </div> -->
+    </div>
+
+    <div class="">
+      <table class="table">
+        <thead class="text-xs  bg-light shadow-sm">
+          <tr style="text-align: center;">
+            <th>Nature</th>
+            <th>Détail Type Par Nature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of natureService.ListNature ">
+            <td style="text-align: center;">{{item.natureLabel}}</td>
+            <td style="text-align: center;">
+              <div class="btn-group">
+                <!-- <button class="btn btn-sm btn-default" (click)="onUpdateNature(item)" data-toggle="modal"
+                  data-target="#AddEditNatureModal">
+                  <i class="fas fa-pen text-primary"></i></button>
+
+                <button class="btn btn-sm btn-default" (click)="onDeleteNature(item)">
+                  <i class="fa fa-trash text-danger"></i></button> -->
+
+                <button class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Détail type Par nature">
+                  <span class="badge badge-primary" *ngIf="item.natureLabel=='Dangereux'"
+                    (click)="openModalTypesByNature(item.natureLabel)">{{item.dangerousNature}} Type (s)</span>
+                  <span class="badge badge-warning" *ngIf="item.natureLabel=='Non Dangereux'"
+                    (click)="openModalTypesByNature(item.natureLabel)">{{item.notDangerousNature}} Type (s)</span>
+                  <span class="badge badge-light"
+                    *ngIf="item.natureLabel!='Non Dangereux' && item.natureLabel!='Dangereux' ">0 Type</span>
+                </button>
+                <!-- <button type="button" (click)="GetTypesByNature(item.natureLabel)" class="btn btn-sm btn-default"
+                  data-toggle="modal" data-target=".bd-example-modal-lg">
+                  <i class="fas fa-info text-primary"></i></button> -->
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls class="text-center" id="first" previousLabel="Préc" nextLabel="Suiv"></pagination-controls>
+    </div>
+
+    <!--  Add or edit Ponderation modal  -->
+    <div class="modal hide fade" id="AddEditNatureModal" tabindex="-1" role="dialog"
+      aria-labelledby="AddEditNatureModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <!-- <div class="modal-header">
+            <h5 class="modal-title" id="AddEditNatureModalTitle" class="text-dark"
+              *ngIf="natureService.formNature.controls.natureId.value=='00000000-0000-0000-0000-000000000000'">
+              <i class="fas fa-plus-circle"></i> Ajouter Nature
+            </h5>
+            <h5 class="modal-title" id="AddEditGoalModalTitle" class="text-dark"
+              *ngIf="natureService.formNature.controls.natureId.value!='00000000-0000-0000-0000-000000000000'">
+              <i class="fas fa-pen text-primary"></i> Modifier Nature
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> -->
+
+          <div class="modal-body p-1">
+            <app-add-or-edit-nature></app-add-or-edit-nature>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
